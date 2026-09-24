@@ -1,0 +1,21 @@
+{
+  "name": "@vidro/language",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "langium:generate": "langium generate",
+    "build": "pnpm langium:generate && tsc -p tsconfig.json",
+    "typecheck": "pnpm langium:generate && tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "langium": "4.4.0"
+  },
+  "devDependencies": {
+    "langium-cli": "4.4.0",
+    "typescript": "5.9.2"
+  }
+}
