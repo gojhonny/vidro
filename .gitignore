@@ -1,0 +1,10 @@
+node_modules/
+.pnpm-store/
+dist/
+.turbo/
+coverage/
+*.log
+.DS_Store
+
+# Vidro generated compiler state
+.vidro/.generated/

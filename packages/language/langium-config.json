@@ -1,0 +1,14 @@
+{
+  "projectName": "Vidro",
+  "languages": [
+    {
+      "id": "vidro",
+      "grammar": "src/vidro.langium",
+      "fileExtensions": [".vidro"],
+      "textMate": {
+        "out": "syntaxes/vidro.tmLanguage.json"
+      }
+    }
+  ],
+  "out": "src/generated"
+}
