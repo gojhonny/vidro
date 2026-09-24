@@ -1,0 +1,42 @@
+---
+title: Compiler Architecture
+description: Vidro parses with Langium, lowers to an output-independent IR, then emits.
+---
+
+# Compiler Architecture
+
+The DSL never writes target files directly. The intended pipeline is:
+
+```text
+.vidro/<project>.vidro
+        ↓
+      parser
+        ↓
+       AST
+        ↓
+ semantic validation
+        ↓
+     Vidro IR
+        ↓
+      emitter
+        ↓
+ environment files
+```
+
+`@vidro/language` owns the Langium grammar and generated AST. `@vidro/core` owns semantics after parsing: the IR, validation, detection, resolution policy, and emitter contracts. `@vidro/cli` calls that core instead of reimplementing it.
+
+## IR
+
+The intermediate representation is independent of output format. It models a project, targets, target paths, environments, and variables. A variable value is a literal, a required value, or an external reference.
+
+Generated IR belongs at:
+
+```text
+.vidro/.generated/<project>.ir.json
+```
+
+That file is compiler state. The `.vidro` source remains the source of truth. Whether every command always writes the IR to disk is not decided. The canonical cache location is still `.vidro/.generated/`.
+
+## Emitters
+
+The first emitter should be a deterministic dotenv emitter. Other formats consume the same IR. Native emitters for Java/Kotlin, R, C#, and Swift are not chosen for a first public release, and none of them are implemented. The dotenv emitter is not implemented either. The core package currently exports the IR types and an emitter contract.

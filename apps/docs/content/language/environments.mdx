@@ -1,0 +1,60 @@
+---
+title: Environments
+description: Environment names are identifiers. default maps to .env, and every other name maps to .env followed by that name.
+---
+
+# Environments
+
+An environment is declared as `target.environment`. The environment name is an identifier. `development`, `production`, `staging`, `preview`, `qa`, and `test` are not reserved keywords. `default` is special only because of the file it maps to.
+
+## Output files
+
+This mapping is designed Vidro semantics. The current CLI does not generate these files.
+
+```text
+default        → .env
+<environment>  → .env.<environment>
+```
+
+```text
+target.default       → <target PATH>/.env
+target.environment   → <target PATH>/.env.<environment>
+```
+
+Examples:
+
+```text
+website.default      → apps/website/.env
+website.development  → apps/website/.env.development
+website.production   → apps/website/.env.production
+website.preview      → apps/website/.env.preview
+website.qa           → apps/website/.env.qa
+api.integration      → <api PATH>/.env.integration
+```
+
+## Example
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+}
+```
+
+That source controls:
+
+```text
+apps/website/.env
+apps/website/.env.development
+```
+
+Whether `default` is also merged into other environments at runtime is a separate, unresolved question. The filename mapping above does not decide that.

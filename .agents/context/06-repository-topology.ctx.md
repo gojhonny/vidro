@@ -11,6 +11,8 @@ packages/
   language/
   core/
   cli/
+  design-system/
+  react/
 
 .agents/
   context/
@@ -25,5 +27,23 @@ packages/
 `packages/core` owns semantics after parsing: IR, validation, repository detection, external resolution policy, and emitters.
 
 `packages/cli` owns command UX and filesystem orchestration. It should call core behavior rather than reimplement compiler logic.
+
+`packages/design-system` (`@vidro/design-system`) owns framework-agnostic visual tokens and the Tailwind theme.
+
+`packages/react` (`@vidro/react`) owns shared React UI, interactions, and visual effects.
+
+`apps/website` is the public single-page product site.
+
+`apps/docs` is the public Nextra documentation.
+
+Dependency direction:
+
+```text
+design-system
+     ↓
+   react
+  ↙     ↘
+website   docs
+```
 
 The website and docs must not become dependencies of compiler packages.

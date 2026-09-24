@@ -1,0 +1,35 @@
+---
+title: LangDrift
+description: Canonical LangDrift Vidro source and the environment files it is designed to control.
+---
+
+# LangDrift
+
+LangDrift is the first intended integration target. The source below is the canonical example. It is designed semantics. Running the current CLI does not create these files.
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_KEY;
+  EMPTY_KEY: "";
+}
+```
+
+## Designed outputs
+
+| Declaration | File | Values |
+| --- | --- | --- |
+| `website.default` | `apps/website/.env` | `RESEND_API_KEY` is an external reference. |
+| `website.development` | `apps/website/.env.development` | `API_URL` is a literal, `REQUIRED_KEY` is required, `EMPTY_KEY` is an explicit empty string. |
+
+`development` is not a keyword. Any other identifier would map the same way: `website.production` would control `apps/website/.env.production`.

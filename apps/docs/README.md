@@ -1,5 +1,5 @@
 # Vidro docs
 
-Placeholder for the future Vidro documentation application.
+Public documentation for Vidro, built with Nextra. English only.
 
-Documentation should be generated from canonical product/compiler decisions where practical, but the docs framework is intentionally not selected by the initial scaffold.
+The workspace pins Zod 4.1.12 because Nextra 4.6.1 validates layout props with a schema that newer Zod 4 releases reject.

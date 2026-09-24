@@ -1,0 +1,17 @@
+@theme {
+  --color-background: #f8fbfc;
+  --color-surface: #ffffff;
+  --color-surface-translucent: rgb(255 255 255 / 0.72);
+  --color-foreground: #111517;
+  --color-muted: #66727a;
+  --color-line: #dde7eb;
+  --color-ice: #eaf3f6;
+  --color-ice-strong: #d8e6eb;
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, "PingFang SC",
+    "Hiragino Sans", "Noto Sans SC", "Noto Sans JP", sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --shadow-glass: 0 8px 32px rgb(17 21 23 / 0.08);
+}

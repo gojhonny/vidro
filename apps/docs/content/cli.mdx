@@ -1,0 +1,20 @@
+---
+title: CLI
+description: The Vidro CLI surface is scaffolded. The commands are not implemented.
+---
+
+# CLI
+
+`@vidro/cli` exposes a `vidro` binary. These commands are recognized:
+
+| Command | Intended role | Current behavior |
+| --- | --- | --- |
+| `init` | Detect a repository and scaffold `.vidro/` | Not implemented. Exits 1. |
+| `generate` | Compile Vidro source into environment outputs | Not implemented. Exits 1. |
+| `validate` | Validate source, references, and resolved configuration | Not implemented. Exits 1. |
+| `check` | Detect drift between source and managed outputs | Not implemented. Exits 1. |
+| `show` | Show resolved configuration with external values masked | Not implemented. Exits 1. |
+
+Unknown commands also exit 1, after printing the command list. `--help` prints the same list and exits 0.
+
+`vidro show` is specified to mask external values. That masking is not implemented. There is no published npm package, so `npx vidro` is not an install path yet.

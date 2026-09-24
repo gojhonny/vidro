@@ -1,0 +1,31 @@
+---
+title: Introduction
+description: Vidro is a declarative environment compiler. One project configuration describes many environment files.
+---
+
+# Introduction
+
+Vidro is a declarative environment compiler. One project configuration describes the environment files a repository needs.
+
+```text
+.vidro/<project>.vidro
+```
+
+That file is the source of truth. Vidro is not a secret manager, and it is not only a dotenv loader.
+
+## Status
+
+Vidro is pre-alpha. The public package is not published. The CLI binary name is `vidro`, and the internal package `@vidro/cli` is private. Commands such as `vidro init` and `vidro generate` exist as a scaffold: they print that they are not implemented and then exit.
+
+This documentation separates two things:
+
+- **Designed semantics** — the language and product behavior Vidro is specified to have.
+- **Current behavior** — what the repository actually runs today.
+
+Designed output paths are described on [Environments](/language/environments). They are not files the current CLI writes.
+
+## What Vidro owns
+
+When the compiler is implemented, Vidro is meant to own the contract for environment files: private external values, materializing outputs, validating required values, and enough fail-fast checking that an application does not need a second runtime validator such as `src/env.ts`.
+
+The application should consume configuration that is already valid.

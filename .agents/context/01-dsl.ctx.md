@@ -30,6 +30,24 @@ website.development {
 - `default` maps to the plain `.env` environment output.
 - `target.environment { ... }` declares an environment for a target.
 
+## Output files
+
+This mapping is canonical language and product semantics. It does not mean the scaffolded CLI already generates the files.
+
+```text
+default        → .env
+<environment>  → .env.<environment>
+```
+
+```text
+website.default      → <website PATH>/.env
+website.development  → <website PATH>/.env.development
+website.production   → <website PATH>/.env.production
+api.integration      → <api PATH>/.env.integration
+```
+
+Environment names remain arbitrary identifiers. `development`, `production`, `staging`, `preview`, `qa`, `test`, and similar names are not reserved keywords. `default` is special only because it maps to plain `.env`.
+
 ## Value semantics
 
 ```css

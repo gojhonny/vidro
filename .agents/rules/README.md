@@ -7,3 +7,4 @@ Rules are implementation invariants. Apply a rule only when its scope matches th
 - `003-secrets.rule.md`
 - `004-compiler.rule.md`
 - `005-scaffolding.rule.md`
+- `006-web-surfaces.rule.md`

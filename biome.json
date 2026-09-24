@@ -1,5 +1,16 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.3.15/schema.json",
+  "files": {
+    "includes": [
+      "**",
+      "!**/.next",
+      "!**/dist",
+      "!**/.turbo",
+      "!**/coverage",
+      "!packages/language/src/generated",
+      "!packages/language/syntaxes"
+    ]
+  },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
@@ -9,6 +20,11 @@
     "enabled": true,
     "rules": {
       "recommended": true
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
     }
   },
   "javascript": {
