@@ -10,6 +10,15 @@ export {
   PACKAGE_MANAGERS,
 } from './install-command.js'
 export type { PackageManager } from './install-command.js'
+export { LanguageSwitcher } from './language-switcher.js'
+export {
+  HOME_LOCALE_LABELS,
+  HOME_LOCALE_LANG,
+  HOME_LOCALE_STORAGE_KEY,
+  HOME_LOCALES,
+  isHomeLocale,
+} from './locale.js'
+export type { HomeLocale } from './locale.js'
 export { VidroLogo, VidroMark } from './logo.js'
 export { MotionTabs } from './motion-tabs.js'
 export type { MotionTab } from './motion-tabs.js'

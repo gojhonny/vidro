@@ -1,0 +1,27 @@
+---
+title: 言語
+description: Vidro の DSL は CSS に似た言語で、Langium が解析します。
+---
+
+# 言語
+
+Vidro のソースは CSS に似ていて、Langium で解析します。文法は `@vidro/language` にあります。これらのページは決まった意味を説明します。コンパイラがすでにファイルを出力する、という意味ではありません。
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_VALUE;
+}
+```
+
+`project` は予約された宣言です。`PATH` はターゲットの予約プロパティです。環境名は普通の識別子です。

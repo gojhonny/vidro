@@ -1,0 +1,34 @@
+---
+title: 支持的生态
+description: Vidro 检测这些语言家族，并通过格式发射器输出。
+---
+
+# 支持的生态
+
+Vidro 检测仓库里的生态，并通过格式发射器编译。它不为每种语言单独做一个编译器。
+
+## 范围内
+
+Python、Java、C/C++、R、JavaScript、PHP、Rust、C#、Swift、TypeScript、Ruby、Dart、Kotlin 和 Go。
+
+## 范围外
+
+COBOL、Groovy、Zig、Visual Basic、Haskell、Perl、Delphi/Pascal、ABAP、Scala、Julia、Lua、VBA、PowerShell、MATLAB、Ada 和 Objective-C。
+
+Swift 在范围内。Objective-C 不在，即使两者都使用 Xcode。
+
+## 格式
+
+这些家族大多可以使用扁平的 dotenv 风格文件，`KEY=value`。计划中的第一个发射器是确定性的 dotenv 发射器。它还没有实现。其他格式应当读取同一份中间表示。
+
+下面这些家族需要各自的发射策略，当前脚手架里都没有这些发射器：
+
+- Java 和 Kotlin 常用 Spring 的 properties 或 YAML。那是应用配置。Spring relaxed binding 不会让 `server.port` 和 `SERVER_PORT` 变成同一个符号。
+- R 使用 `.Renviron`，接近 dotenv，但并不相同。
+- C# 常把 `appsettings` JSON 和环境变量叠加在一起。嵌套键需要显式映射。
+- Swift 的构建设置和客户端打包不是通用 dotenv。进了客户端二进制的值不是密钥。
+- C/C++ 没有统一的环境文件约定。只有仓库里能看到 loader 或常规 env 文件时，才采用 dotenv 行为。
+
+浏览器和移动端目标可能暴露带前缀的变量，例如 `NEXT_PUBLIC_` 或 `VITE_`。Vidro 不得把这些打进包里的值说成机密。
+
+dotenv 方言在引号、`export`、插值、重复键以及哪个文件优先上也不一致。Vidro 应生成保守子集，并保守地解析已有文件。这个生成器还没有实现。

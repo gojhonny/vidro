@@ -1,0 +1,35 @@
+---
+title: LangDrift
+description: Fonte canônica do LangDrift e os arquivos de ambiente que ela foi projetada para controlar.
+---
+
+# LangDrift
+
+LangDrift é o primeiro alvo de integração pretendido. A fonte abaixo é o exemplo canônico. É semântica projetada. Executar a CLI atual não cria estes arquivos.
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_KEY;
+  EMPTY_KEY: "";
+}
+```
+
+## Saídas projetadas
+
+| Declaração | Arquivo | Valores |
+| --- | --- | --- |
+| `website.default` | `apps/website/.env` | `RESEND_API_KEY` é uma referência externa. |
+| `website.development` | `apps/website/.env.development` | `API_URL` é literal, `REQUIRED_KEY` é obrigatório, `EMPTY_KEY` é uma string vazia explícita. |
+
+`development` não é uma palavra-chave. Qualquer outro identificador mapeia do mesmo modo: `website.production` controlaria `apps/website/.env.production`.

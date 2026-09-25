@@ -1,0 +1,42 @@
+---
+title: Valores
+description: Literal, obrigatório, vazio e externo são declarações diferentes.
+---
+
+# Valores
+
+Quatro formas são diferentes. Não as trate como a mesma string.
+
+```css
+KEY: "value";
+```
+
+Um literal. O Vidro é dono do valor.
+
+```css
+KEY;
+```
+
+Obrigatório, ainda sem fonte literal ou externa. Isto não é uma string vazia.
+
+```css
+KEY: "";
+```
+
+Uma string vazia explícita.
+
+```css
+KEY: $KEY;
+```
+
+Uma referência externa. Por enquanto o nome dos dois lados é o mesmo. Veja [Valores externos](/language/external-values).
+
+```css
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_KEY;
+  EMPTY_KEY: "";
+}
+```
+
+`API_URL` é literal, `REQUIRED_KEY` está sem resolução, e `EMPTY_KEY` está vazio de propósito.

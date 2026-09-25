@@ -1,0 +1,35 @@
+---
+title: LangDrift
+description: LangDrift の規範的な Vidro ソースと、それが設計上制御する環境ファイル。
+---
+
+# LangDrift
+
+LangDrift は、最初に想定している統合先です。下のソースは規範的な例です。これは設計上の意味です。現在の CLI を実行しても、これらのファイルは作られません。
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_KEY;
+  EMPTY_KEY: "";
+}
+```
+
+## 設計上の出力
+
+| 宣言 | ファイル | 値 |
+| --- | --- | --- |
+| `website.default` | `apps/website/.env` | `RESEND_API_KEY` は外部参照です。 |
+| `website.development` | `apps/website/.env.development` | `API_URL` はリテラル、`REQUIRED_KEY` は必須、`EMPTY_KEY` は明示的な空文字です。 |
+
+`development` はキーワードではありません。他の識別子も同じ対応です。`website.production` は `apps/website/.env.production` を制御します。

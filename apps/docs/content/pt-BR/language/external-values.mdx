@@ -1,0 +1,16 @@
+---
+title: Valores externos
+description: Segredos ficam fora da fonte Vidro versionada e são referenciados pelo mesmo nome.
+---
+
+# Valores externos
+
+Valores secretos não devem ser copiados para a fonte Vidro versionada. Um segredo é uma referência externa:
+
+```css
+RESEND_API_KEY: $RESEND_API_KEY;
+```
+
+Os dois lados usam o mesmo nome. A referência registra que o valor vem de fora do arquivo Vidro. Ela não guarda o segredo.
+
+A ordem para resolver essa referência — ambiente do processo, um arquivo env ignorado, CI ou um provedor de deploy — não está decidida. Valores empacotados no cliente, como uma variável `NEXT_PUBLIC_` ou `VITE_`, não são confidenciais só porque foram referenciados assim.

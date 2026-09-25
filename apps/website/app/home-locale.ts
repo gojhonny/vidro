@@ -1,22 +1,4 @@
-export const HOME_LOCALES = ['en', 'pt-BR', 'zh', 'ja'] as const
-
-export type HomeLocale = (typeof HOME_LOCALES)[number]
-
-export const HOME_LOCALE_STORAGE_KEY = 'vidro-home-locale'
-
-export const HOME_LOCALE_LABELS: Record<HomeLocale, string> = {
-  en: 'EN',
-  'pt-BR': 'PT-BR',
-  zh: '中文',
-  ja: 'あ',
-}
-
-export const HOME_LOCALE_LANG: Record<HomeLocale, string> = {
-  en: 'en',
-  'pt-BR': 'pt-BR',
-  zh: 'zh',
-  ja: 'ja',
-}
+import type { HomeLocale } from '@vidro/react/locale'
 
 export interface HomeCopy {
   slogan: string
@@ -49,8 +31,4 @@ export const HOME_COPY: Record<HomeLocale, HomeCopy> = {
       'Vidro は、一つの宣言的な設定をプロジェクトが必要とする環境ファイルへコンパイルします。検出、検証、同期まで担います。',
     docs: 'ドキュメント',
   },
-}
-
-export function isHomeLocale(value: string | null): value is HomeLocale {
-  return HOME_LOCALES.some((locale) => locale === value)
 }

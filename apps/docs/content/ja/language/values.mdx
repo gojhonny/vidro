@@ -1,0 +1,42 @@
+---
+title: 値
+description: リテラル、必須、空、外部参照は別の宣言です。
+---
+
+# 値
+
+四つの形は違います。同じ文字列として扱わないでください。
+
+```css
+KEY: "value";
+```
+
+リテラルです。値は Vidro が持ちます。
+
+```css
+KEY;
+```
+
+必須ですが、リテラルも外部の源もまだありません。空文字ではありません。
+
+```css
+KEY: "";
+```
+
+明示的な空文字です。
+
+```css
+KEY: $KEY;
+```
+
+外部参照です。今のところ両側の名前は同じです。[外部の値](/language/external-values)を見てください。
+
+```css
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_KEY;
+  EMPTY_KEY: "";
+}
+```
+
+`API_URL` はリテラル、`REQUIRED_KEY` は未解決、`EMPTY_KEY` は意図した空です。

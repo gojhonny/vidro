@@ -1,0 +1,42 @@
+---
+title: 值
+description: 字面量、必填、空值和外部引用是不同的声明。
+---
+
+# 值
+
+四种形式不同。不要把它们当成同一个字符串。
+
+```css
+KEY: "value";
+```
+
+字面量。值由 Vidro 持有。
+
+```css
+KEY;
+```
+
+必填，但还没有字面量或外部来源。这不是空字符串。
+
+```css
+KEY: "";
+```
+
+显式的空字符串。
+
+```css
+KEY: $KEY;
+```
+
+外部引用。目前两边的名字相同。见[外部值](/language/external-values)。
+
+```css
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_KEY;
+  EMPTY_KEY: "";
+}
+```
+
+`API_URL` 是字面量，`REQUIRED_KEY` 尚未解析，`EMPTY_KEY` 是有意留空。

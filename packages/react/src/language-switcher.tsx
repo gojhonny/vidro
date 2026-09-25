@@ -1,13 +1,13 @@
 'use client'
 
-import { HOME_LOCALE_LABELS, HOME_LOCALES, type HomeLocale } from './home-locale'
+import { HOME_LOCALE_LABELS, HOME_LOCALES, type HomeLocale } from './locale.js'
 
 export function LanguageSwitcher({
-  locale,
-  onSelect,
+  onValueChange,
+  value,
 }: {
-  locale: HomeLocale
-  onSelect: (next: HomeLocale) => void
+  onValueChange: (next: HomeLocale) => void
+  value: HomeLocale
 }) {
   return (
     <div
@@ -16,7 +16,7 @@ export function LanguageSwitcher({
       role="tablist"
     >
       {HOME_LOCALES.map((code) => {
-        const selected = locale === code
+        const selected = value === code
         return (
           <button
             aria-selected={selected}
@@ -26,7 +26,7 @@ export function LanguageSwitcher({
                 : 'bg-transparent text-muted hover:text-foreground'
             }`}
             key={code}
-            onClick={() => onSelect(code)}
+            onClick={() => onValueChange(code)}
             role="tab"
             type="button"
           >

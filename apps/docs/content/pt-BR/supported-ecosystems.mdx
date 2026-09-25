@@ -1,0 +1,34 @@
+---
+title: Ecossistemas suportados
+description: O Vidro detecta estas famílias de linguagem e emite por meio de emissores de formato.
+---
+
+# Ecossistemas suportados
+
+O Vidro detecta ecossistemas do repositório e compila por emissores de formato. Não há um compilador separado para cada linguagem.
+
+## No escopo
+
+Python, Java, C/C++, R, JavaScript, PHP, Rust, C#, Swift, TypeScript, Ruby, Dart, Kotlin e Go.
+
+## Fora do escopo
+
+COBOL, Groovy, Zig, Visual Basic, Haskell, Perl, Delphi/Pascal, ABAP, Scala, Julia, Lua, VBA, PowerShell, MATLAB, Ada e Objective-C.
+
+Swift está no escopo. Objective-C não está, mesmo quando os dois usam Xcode.
+
+## Formatos
+
+A maioria dessas famílias pode usar um arquivo plano no estilo dotenv, `KEY=value`. O primeiro emissor planejado é um emissor dotenv determinístico. Ele não está implementado. Formatos adicionais devem ler a mesma representação intermediária.
+
+Estas famílias precisam da própria política de emissão, e nenhum desses emissores está no scaffold atual:
+
+- Java e Kotlin costumam usar properties ou YAML do Spring. Esses arquivos são configuração de aplicação. O relaxed binding do Spring não torna `server.port` e `SERVER_PORT` o mesmo símbolo.
+- R usa `.Renviron`, que é parecido com dotenv e não é idêntico.
+- C# combina JSON `appsettings` com sobreposições de ambiente. Chaves aninhadas precisam de um mapeamento explícito.
+- Configuração de build e bundles de cliente em Swift não são um dotenv genérico. Um valor dentro de um binário de cliente não é um segredo.
+- C/C++ não tem uma convenção universal de arquivo de ambiente. O comportamento dotenv só se aplica quando o repositório mostra um loader ou arquivos env convencionais.
+
+Alvos de browser e mobile podem expor variáveis com prefixo, como `NEXT_PUBLIC_` ou `VITE_`. O Vidro não deve descrever esses valores empacotados como confidenciais.
+
+Dialetos dotenv também discordam sobre aspas, `export`, interpolação, chaves duplicadas e qual arquivo vence. O Vidro deve gerar um subconjunto conservador e analisar arquivos existentes de forma conservadora. Esse gerador ainda não está implementado.

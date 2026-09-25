@@ -1,0 +1,42 @@
+---
+title: Arquitetura do compilador
+description: O Vidro analisa com Langium, rebaixa para uma IR independente do formato e só então emite.
+---
+
+# Arquitetura do compilador
+
+A DSL nunca escreve arquivos de alvo diretamente. O fluxo pretendido é:
+
+```text
+.vidro/<project>.vidro
+        ↓
+      parser
+        ↓
+       AST
+        ↓
+ semantic validation
+        ↓
+     Vidro IR
+        ↓
+      emitter
+        ↓
+ environment files
+```
+
+`@vidro/language` é dono da gramática Langium e da AST gerada. `@vidro/core` é dono da semântica depois do parse: IR, validação, detecção, política de resolução e contratos de emissor. `@vidro/cli` chama esse core em vez de reimplementá-lo.
+
+## IR
+
+A representação intermediária não depende do formato de saída. Ela modela um projeto, alvos, caminhos, ambientes e variáveis. O valor de uma variável é um literal, um valor obrigatório ou uma referência externa.
+
+A IR gerada pertence a:
+
+```text
+.vidro/.generated/<project>.ir.json
+```
+
+Esse arquivo é estado do compilador. A fonte `.vidro` continua sendo a fonte da verdade. Se todo comando sempre grava a IR em disco ainda não está decidido. O local canônico de cache continua sendo `.vidro/.generated/`.
+
+## Emissores
+
+O primeiro emissor deve ser um emissor dotenv determinístico. Outros formatos consomem a mesma IR. Emissores nativos para Java/Kotlin, R, C# e Swift não foram escolhidos para um primeiro lançamento público, e nenhum está implementado. O emissor dotenv também não está. O pacote core hoje exporta os tipos da IR e um contrato de emissor.

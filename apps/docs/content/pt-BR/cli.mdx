@@ -1,0 +1,20 @@
+---
+title: CLI
+description: A superfície da CLI do Vidro é um scaffold. Os comandos não estão implementados.
+---
+
+# CLI
+
+`@vidro/cli` expõe o binário `vidro`. Estes comandos são reconhecidos:
+
+| Comando | Papel pretendido | Comportamento atual |
+| --- | --- | --- |
+| `init` | Detectar um repositório e criar `.vidro/` | Não implementado. Sai com 1. |
+| `generate` | Compilar a fonte Vidro em saídas de ambiente | Não implementado. Sai com 1. |
+| `validate` | Validar fonte, referências e a configuração resolvida | Não implementado. Sai com 1. |
+| `check` | Detectar deriva entre a fonte e as saídas geridas | Não implementado. Sai com 1. |
+| `show` | Mostrar a configuração resolvida com valores externos mascarados | Não implementado. Sai com 1. |
+
+Comandos desconhecidos também saem com 1, depois de imprimir a lista. `--help` imprime a mesma lista e sai com 0.
+
+`vidro show` está especificado para mascarar valores externos. Esse mascaramento não está implementado. Não há pacote npm publicado, então `npx vidro` ainda não é um caminho de instalação.

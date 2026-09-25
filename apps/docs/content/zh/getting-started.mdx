@@ -1,0 +1,38 @@
+---
+title: 入门
+description: Vidro 项目的形状，以及当前脚手架能做和不能做的事。
+---
+
+# 入门
+
+计划中的公开命令是 `npx vidro`、`npm exec vidro`、`pnpm dlx vidro`、`bunx vidro` 和 `yarn dlx vidro`。它们今天都不会安装一个已发布的包。npm 包名尚未决定，`@vidro/cli` 是私有的。
+
+## 作为脚手架存在的命令
+
+CLI 接受这些名字：
+
+```text
+vidro init
+vidro generate
+vidro validate
+vidro check
+vidro show
+```
+
+每一个都接在 `@vidro/cli` 上，目前会写出“尚未实现”，然后以状态 1 退出。不要把它们当成可用的安装步骤。
+
+## 源文件
+
+一个项目声明在一个文件里：
+
+```text
+.vidro/<project>.vidro
+```
+
+`project` 命名这个文件。目标命名目录。环境命名这些目录收到的文件。文件名规则在[环境](/language/environments)。这是设计语义。脚手架还不会生成这些文件。
+
+## 脚手架
+
+`vidro init` 实现之后，应当先检测，再推断，最后才提问。读仓库文件比提问便宜。只有检查之后仍然含糊的事实才该问，例如无法推断的项目名。
+
+它不该询问目标列表、`PATH`、要导入哪些已有环境文件，或空值和密钥如何处理。那是检测和编译器策略。

@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@vidro/core": "workspace:*",
     "@vidro/design-system": "workspace:*",
     "@vidro/react": "workspace:*",
     "jotai": "3.0.0",

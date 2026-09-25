@@ -13,3 +13,18 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-sans);
 }
+
+@keyframes vidro-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[vidro-marquee_32s_linear_infinite\] {
+    animation: none;
+  }
+}

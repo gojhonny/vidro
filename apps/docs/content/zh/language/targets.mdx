@@ -1,0 +1,20 @@
+---
+title: 目标
+description: 目标是接收环境文件的命名目录。
+---
+
+# 目标
+
+目标是一个名字加上一条路径。`PATH` 属于目标，因为它不随环境改变。
+
+```css
+website {
+  PATH: "apps/website/";
+}
+
+api {
+  PATH: "apps/api/";
+}
+```
+
+路径是该目标的环境文件所在的位置。`website.default` 写到 `website` 的路径。`api.integration` 写到 `api` 的路径。文件名规则在[环境](/language/environments)。

@@ -1,0 +1,34 @@
+---
+title: 対応エコシステム
+description: Vidro はこれらの言語ファミリーを検出し、形式ごとのエミッタで出力します。
+---
+
+# 対応エコシステム
+
+Vidro はリポジトリのエコシステムを検出し、形式エミッタを通してコンパイルします。言語ごとに別のコンパイラはありません。
+
+## 範囲内
+
+Python、Java、C/C++、R、JavaScript、PHP、Rust、C#、Swift、TypeScript、Ruby、Dart、Kotlin、Go。
+
+## 範囲外
+
+COBOL、Groovy、Zig、Visual Basic、Haskell、Perl、Delphi/Pascal、ABAP、Scala、Julia、Lua、VBA、PowerShell、MATLAB、Ada、Objective-C。
+
+Swift は範囲内です。Objective-C は、両方が Xcode を使っていても範囲外です。
+
+## 形式
+
+これらのファミリーの多くは、フラットな dotenv 形式 `KEY=value` を使えます。最初に予定しているエミッタは、決定的な dotenv エミッタです。未実装です。追加の形式は同じ中間表現を読むべきです。
+
+次のファミリーは独自の出力方針が必要で、現在のスキャフォールドにはそのエミッタはありません。
+
+- Java と Kotlin は Spring の properties や YAML をよく使います。それらはアプリケーション設定です。Spring の relaxed binding は `server.port` と `SERVER_PORT` を同じ記号にしません。
+- R は `.Renviron` を使います。dotenv に近いですが同一ではありません。
+- C# は `appsettings` の JSON と環境の上書きを組み合わせます。入れ子のキーには明示的な対応が必要です。
+- Swift のビルド設定とクライアントのバンドルは、汎用 dotenv ではありません。クライアントのバイナリに入った値はシークレットではありません。
+- C/C++ に普遍的な環境ファイルの慣習はありません。ローダや慣例的な env ファイルがリポジトリにあるときだけ dotenv を使います。
+
+ブラウザやモバイルのターゲットは、`NEXT_PUBLIC_` や `VITE_` のような接頭辞付き変数を露出できます。Vidro は、バンドルされるそれらの値を機密と呼んではいけません。
+
+dotenv の方言は、引用符、`export`、展開、重複キー、どのファイルが勝つかでも一致しません。Vidro は保守的な部分集合を生成し、既存ファイルも保守的に解析するべきです。その生成器はまだ実装されていません。

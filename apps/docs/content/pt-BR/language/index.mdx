@@ -1,0 +1,27 @@
+---
+title: Linguagem
+description: A DSL do Vidro é uma linguagem parecida com CSS, analisada pelo Langium.
+---
+
+# Linguagem
+
+A fonte Vidro parece CSS e é analisada com Langium. A gramática vive em `@vidro/language`. Estas páginas descrevem a semântica decidida. Elas não significam que o compilador já emite arquivos.
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_VALUE;
+}
+```
+
+`project` é uma declaração reservada. `PATH` é uma propriedade reservada do alvo. Nomes de ambiente são identificadores comuns.

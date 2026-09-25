@@ -1,0 +1,42 @@
+---
+title: コンパイラの構成
+description: Vidro は Langium で解析し、出力形式に依存しない IR へ落としてから出力します。
+---
+
+# コンパイラの構成
+
+DSL がターゲットファイルを直接書くことはありません。想定する流れは次です。
+
+```text
+.vidro/<project>.vidro
+        ↓
+      parser
+        ↓
+       AST
+        ↓
+ semantic validation
+        ↓
+     Vidro IR
+        ↓
+      emitter
+        ↓
+ environment files
+```
+
+`@vidro/language` は Langium の文法と生成された AST を持ちます。`@vidro/core` は解析後の意味を持ちます。IR、検証、検出、解決方針、エミッタの契約です。`@vidro/cli` はそれを再実装せず、core を呼びます。
+
+## IR
+
+中間表現は出力形式から独立しています。プロジェクト、ターゲット、パス、環境、変数を表します。変数の値はリテラル、必須値、または外部参照です。
+
+生成される IR の場所は次です。
+
+```text
+.vidro/.generated/<project>.ir.json
+```
+
+このファイルはコンパイラの状態です。`.vidro` のソースがソース・オブ・トゥルースのままです。すべてのコマンドが常に IR をディスクへ書くかは未決です。規範的なキャッシュの場所は引き続き `.vidro/.generated/` です。
+
+## エミッタ
+
+最初のエミッタは決定的な dotenv エミッタであるべきです。他の形式は同じ IR を消費します。Java/Kotlin、R、C#、Swift のネイティブエミッタは最初の公開リリース向けに選ばれておらず、どれも未実装です。dotenv エミッタも未実装です。core パッケージが今エクスポートしているのは、IR の型とエミッタの契約です。

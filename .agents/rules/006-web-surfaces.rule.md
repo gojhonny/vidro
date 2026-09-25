@@ -15,4 +15,9 @@ Scope: `apps/website`, `apps/docs`, `packages/design-system`, `packages/react`.
 - Do not introduce a separate i18n framework for the single-page website unless the owner changes that architecture.
 - Website translations stay in the centralized locale module.
 - Changing the website locale updates `document.documentElement.lang`, and the preference persists locally.
-- Docs are not multilingual in the current product scope.
+- The website and the docs use the shared `LanguageSwitcher` and the locale set `en`, `pt-BR`, `zh`, `ja`.
+- Website translations stay centralized. The website does not add locale routes.
+- Docs use Nextra's locale content routing, not a separate translation runtime, and do not show a second language selector.
+- HTML `lang` follows the active locale, and the explicit locale preference persists locally.
+- The website support marquee follows the canonical support matrix. Unsupported ecosystems never appear.
+- The docs brand navigates to the public website, not to the docs root.
