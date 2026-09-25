@@ -12,6 +12,8 @@ Environment management in a real monorepo is spread across environment files, se
 
 Vidro is a declarative environment compiler. It is not just a dotenv loader and it is not a secret manager.
 
+Targets and environment identifiers describe physical environment files. `default` maps to `.env`. Any other environment name maps to `.env.<environment>`. The scaffolded CLI does not generate these files yet.
+
 The canonical source is:
 
 ```text

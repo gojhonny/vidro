@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import "@vidro/design-system/theme.css";
+@import "nextra-theme-docs/style.css";
+@source "../../../packages/react/src";
+
+html {
+  color-scheme: light;
+  background: var(--color-background);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+pre {
+  background: var(--color-ice);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}

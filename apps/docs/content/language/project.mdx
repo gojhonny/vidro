@@ -1,0 +1,16 @@
+---
+title: Project
+description: The project declaration names the Vidro source file.
+---
+
+# Project
+
+Every Vidro file starts with a project name:
+
+```css
+project: "langdrift";
+```
+
+The name is a string. It identifies the configuration, and the canonical source path is `.vidro/<project>.vidro`. Generated compiler state, when it exists, belongs under `.vidro/.generated/`, not in the source file.
+
+LangDrift is the first intended integration target. That integration is not implemented in this repository yet.

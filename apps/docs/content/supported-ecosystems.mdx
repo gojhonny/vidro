@@ -1,0 +1,34 @@
+---
+title: Supported Ecosystems
+description: Vidro detects these language families and emits through format emitters.
+---
+
+# Supported Ecosystems
+
+Vidro detects repository ecosystems and compiles through format emitters. It does not ship a separate compiler for every language.
+
+## In scope
+
+Python, Java, C/C++, R, JavaScript, PHP, Rust, C#, Swift, TypeScript, Ruby, Dart, Kotlin, and Go.
+
+## Out of scope
+
+COBOL, Groovy, Zig, Visual Basic, Haskell, Perl, Delphi/Pascal, ABAP, Scala, Julia, Lua, VBA, PowerShell, MATLAB, Ada, and Objective-C.
+
+Swift is in scope. Objective-C is not, even when both use Xcode.
+
+## Formats
+
+Most of these families can use a flat dotenv-style `KEY=value` file. The first emitter is planned as a deterministic dotenv emitter. It is not implemented. Additional formats should read the same intermediate representation.
+
+These families need their own emitter policy, and none of those emitters are in the current scaffold:
+
+- Java and Kotlin often use Spring properties or YAML. Those files are application configuration. Spring relaxed binding does not make `server.port` and `SERVER_PORT` the same symbol.
+- R uses `.Renviron`, which is close to dotenv and not identical.
+- C# commonly combines `appsettings` JSON with environment overlays. Nested keys need an explicit mapping.
+- Swift build settings and client bundles are not a generic dotenv file. A value inside a client binary is not a secret.
+- C/C++ has no universal env-file convention. Dotenv behavior applies only when the repository shows a loader or conventional env files.
+
+Browser and mobile targets can expose prefixed variables such as `NEXT_PUBLIC_` or `VITE_`. Vidro must not describe those bundled values as confidential.
+
+Dotenv dialects also disagree about quotes, `export`, interpolation, duplicate keys, and which file wins. Vidro should generate a conservative subset and parse existing files conservatively. That generator is not implemented yet.

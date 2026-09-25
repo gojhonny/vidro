@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "@vidro/design-system/theme.css";
+@source "../../../packages/react/src";
+@source "../../../packages/design-system/src";
+
+html {
+  color-scheme: light;
+  background: var(--color-background);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}

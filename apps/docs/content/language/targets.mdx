@@ -1,0 +1,20 @@
+---
+title: Targets
+description: A target is a named directory that receives environment files.
+---
+
+# Targets
+
+A target is a name plus a path. `PATH` belongs to the target because it does not change per environment.
+
+```css
+website {
+  PATH: "apps/website/";
+}
+
+api {
+  PATH: "apps/api/";
+}
+```
+
+The path is where that target's environment files are placed. `website.default` writes into the `website` path. `api.integration` writes into the `api` path. The filename rule is on [Environments](/language/environments).

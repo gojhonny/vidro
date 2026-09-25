@@ -1,0 +1,27 @@
+---
+title: Language
+description: The Vidro DSL is a CSS-like language parsed by Langium.
+---
+
+# Language
+
+Vidro source is CSS-like and parsed with Langium. The grammar lives in `@vidro/language`. These pages describe the decided language semantics. They do not mean the compiler already emits files.
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_VALUE;
+}
+```
+
+`project` is a reserved declaration. `PATH` is a reserved target property. Environment names are ordinary identifiers.

@@ -1,0 +1,38 @@
+---
+title: Getting Started
+description: How a Vidro project is shaped, and what the current scaffold can and cannot do.
+---
+
+# Getting Started
+
+The intended public commands are `npx vidro`, `npm exec vidro`, `pnpm dlx vidro`, `bunx vidro`, and `yarn dlx vidro`. None of those install a published package today. The npm package name is still undecided, and `@vidro/cli` is private.
+
+## Commands that exist as a scaffold
+
+The CLI accepts these names:
+
+```text
+vidro init
+vidro generate
+vidro validate
+vidro check
+vidro show
+```
+
+Each one is wired in `@vidro/cli` and currently writes that the command is not implemented, then exits with status 1. Do not treat them as working setup steps.
+
+## Source file
+
+A project is declared in one file:
+
+```text
+.vidro/<project>.vidro
+```
+
+`project` names that file. Targets name directories. Environments name the files those directories receive. See [Environments](/language/environments) for the filename rule. That rule is designed semantics. The scaffold does not generate the files yet.
+
+## Scaffolding
+
+When `vidro init` is implemented, it should follow detect, then infer, then ask. Repository files are cheaper than questions. The scaffolder should ask only when a fact is still ambiguous after inspection, such as a project name that cannot be inferred.
+
+It should not ask for target lists, `PATH` values, which existing environment files to import, or how to treat empty values and secrets. Those are detection and compiler policy.

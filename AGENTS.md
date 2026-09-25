@@ -25,3 +25,9 @@ This repository is the canonical implementation space for Vidro.
 - Scaffolding follows detect > infer > ask. Do not add questions for information that can be derived from repository files.
 - Applications should not need duplicated runtime environment validators when Vidro is the environment gate.
 - Do not silently normalize ecosystem-specific corner cases into generic dotenv behavior. Keep them explicit in compiler/detection policy.
+- Root `DESIGN.md` is generated from the Airtable getdesign reference. It is a structural and rhythm reference only. Airtable branding, colors, illustrations, and identity are not Vidro product decisions.
+- `@vidro/design-system` owns shared visual tokens. `@vidro/react` owns shared React UI and effects used by the website and docs.
+- The website and docs consume those packages rather than duplicating a design system.
+- Vidro is light-theme-only unless the owner explicitly changes that decision.
+- Website examples and product copy must not claim compiler functionality that is not implemented.
+- Documentation must distinguish canonical or designed semantics from currently implemented behavior.

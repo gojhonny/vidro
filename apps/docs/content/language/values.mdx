@@ -1,0 +1,42 @@
+---
+title: Values
+description: Literal, required, empty, and external values are different declarations.
+---
+
+# Values
+
+Four forms are different. Do not treat them as the same string.
+
+```css
+KEY: "value";
+```
+
+A literal. Vidro owns the value.
+
+```css
+KEY;
+```
+
+Required, and not yet given a literal or an external source. This is not an empty string.
+
+```css
+KEY: "";
+```
+
+An explicit empty string.
+
+```css
+KEY: $KEY;
+```
+
+An external reference. For now the name on both sides is the same. See [External Values](/language/external-values).
+
+```css
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_KEY;
+  EMPTY_KEY: "";
+}
+```
+
+`API_URL` is a literal, `REQUIRED_KEY` is unresolved, and `EMPTY_KEY` is empty on purpose.

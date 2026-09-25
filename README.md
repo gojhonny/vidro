@@ -28,11 +28,13 @@ The generated/intermediate representation belongs under `.vidro/.generated/`. Th
 
 ## Monorepo
 
-- `apps/website` — future public website.
-- `apps/docs` — future documentation application.
+- `apps/website` — public single-page website.
+- `apps/docs` — public Nextra documentation.
 - `packages/language` — Vidro DSL implemented with Langium.
 - `packages/core` — IR, compiler contracts, detection, and emitters.
 - `packages/cli` — `vidro` CLI and repository scaffolding.
+- `packages/design-system` — shared visual tokens.
+- `packages/react` — shared React UI used by the website and docs.
 
 Repository guidance and product decisions live in [`.agents/`](.agents/README.md).
 

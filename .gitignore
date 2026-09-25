@@ -1,4 +1,10 @@
 node_modules/
+.next/
+*.tsbuildinfo
+
+# Langium output produced by the language package build
+packages/language/src/generated/
+packages/language/syntaxes/
 .pnpm-store/
 dist/
 .turbo/

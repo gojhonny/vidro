@@ -1,0 +1,16 @@
+---
+title: External Values
+description: Secrets stay out of tracked Vidro source and are referenced by the same name.
+---
+
+# External Values
+
+Secret values must not be copied into tracked Vidro source. A secret is an external reference:
+
+```css
+RESEND_API_KEY: $RESEND_API_KEY;
+```
+
+Both sides use the same name. The reference records that the value comes from outside the Vidro file. It does not store the secret.
+
+The order used to resolve that reference — process environment, an ignored env file, CI, or a deployment provider — is not decided. Client-bundled values, such as a `NEXT_PUBLIC_` or `VITE_` variable, are not confidential just because they were referenced this way.
