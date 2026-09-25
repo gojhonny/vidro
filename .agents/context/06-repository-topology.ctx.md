@@ -47,3 +47,7 @@ website   docs
 ```
 
 The website and docs must not become dependencies of compiler packages.
+
+## Verification
+
+GitHub Actions runs on pull requests and on pushes to `main`. It uses the repository-pinned Node 24 runtime and the repository pnpm version, installs with a frozen lockfile, then runs lint, typecheck, tests, and a production build.

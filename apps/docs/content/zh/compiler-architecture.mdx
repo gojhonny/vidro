@@ -1,0 +1,42 @@
+---
+title: 编译器架构
+description: Vidro 用 Langium 解析，先降到与输出无关的 IR，再发射。
+---
+
+# 编译器架构
+
+DSL 从不直接写目标文件。预期的流水线是：
+
+```text
+.vidro/<project>.vidro
+        ↓
+      parser
+        ↓
+       AST
+        ↓
+ semantic validation
+        ↓
+     Vidro IR
+        ↓
+      emitter
+        ↓
+ environment files
+```
+
+`@vidro/language` 拥有 Langium 语法和生成的 AST。`@vidro/core` 拥有解析之后的语义：IR、校验、检测、解析策略和发射器契约。`@vidro/cli` 调用这个 core，而不是重新实现它。
+
+## IR
+
+中间表示与输出格式无关。它描述项目、目标、路径、环境和变量。变量的值是字面量、必填值或外部引用。
+
+生成的 IR 属于：
+
+```text
+.vidro/.generated/<project>.ir.json
+```
+
+这个文件是编译器状态。`.vidro` 源仍然是事实来源。每个命令是否总是把 IR 写到磁盘，还没有决定。规范的缓存位置仍然是 `.vidro/.generated/`。
+
+## 发射器
+
+第一个发射器应当是确定性的 dotenv 发射器。其他格式消费同一份 IR。Java/Kotlin、R、C# 和 Swift 的原生发射器还没有被选进第一次公开发布，而且都没有实现。dotenv 发射器也没有实现。core 包目前导出 IR 类型和发射器契约。

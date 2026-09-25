@@ -1,0 +1,27 @@
+---
+title: 语言
+description: Vidro DSL 是一种类似 CSS 的语言，由 Langium 解析。
+---
+
+# 语言
+
+Vidro 源看起来像 CSS，由 Langium 解析。语法在 `@vidro/language`。这些页面描述已经决定的语义。它们不表示编译器已经会写出文件。
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_VALUE;
+}
+```
+
+`project` 是保留声明。`PATH` 是目标上的保留属性。环境名是普通标识符。

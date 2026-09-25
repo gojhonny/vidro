@@ -1,0 +1,31 @@
+---
+title: Introdução
+description: O Vidro é um compilador declarativo de ambientes. Uma configuração de projeto descreve muitos arquivos de ambiente.
+---
+
+# Introdução
+
+O Vidro é um compilador declarativo de ambientes. Uma configuração de projeto descreve os arquivos de ambiente de que um repositório precisa.
+
+```text
+.vidro/<project>.vidro
+```
+
+Esse arquivo é a fonte da verdade. O Vidro não é um gerenciador de segredos e não é apenas um carregador de dotenv.
+
+## Estado
+
+O Vidro está em pré-alfa. O pacote público não foi publicado. O binário da CLI se chama `vidro`, e o pacote interno `@vidro/cli` é privado. Comandos como `vidro init` e `vidro generate` existem como scaffold: eles informam que não estão implementados e encerram.
+
+Esta documentação separa duas coisas:
+
+- **Semântica projetada** — o comportamento de linguagem e de produto que o Vidro especifica.
+- **Comportamento atual** — o que o repositório executa hoje.
+
+Os caminhos de saída projetados estão em [Ambientes](/language/environments). A CLI atual não grava esses arquivos.
+
+## O que o Vidro passa a controlar
+
+Quando o compilador estiver implementado, o Vidro deve ser o contrato dos arquivos de ambiente: valores externos privados, materialização das saídas, validação de valores obrigatórios e checagem fail-fast suficiente para que a aplicação não precise de um segundo validador, como `src/env.ts`.
+
+A aplicação deve consumir uma configuração que já seja válida.

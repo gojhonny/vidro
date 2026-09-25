@@ -1,0 +1,60 @@
+---
+title: Ambientes
+description: Nomes de ambiente são identificadores. default mapeia para .env, e qualquer outro nome mapeia para .env seguido desse nome.
+---
+
+# Ambientes
+
+Um ambiente é declarado como `target.environment`. O nome do ambiente é um identificador. `development`, `production`, `staging`, `preview`, `qa` e `test` não são palavras reservadas. `default` é especial apenas por causa do arquivo para o qual mapeia.
+
+## Arquivos de saída
+
+Este mapeamento é semântica projetada do Vidro. A CLI atual não gera estes arquivos.
+
+```text
+default        → .env
+<environment>  → .env.<environment>
+```
+
+```text
+target.default       → <target PATH>/.env
+target.environment   → <target PATH>/.env.<environment>
+```
+
+Exemplos:
+
+```text
+website.default      → apps/website/.env
+website.development  → apps/website/.env.development
+website.production   → apps/website/.env.production
+website.preview      → apps/website/.env.preview
+website.qa           → apps/website/.env.qa
+api.integration      → <api PATH>/.env.integration
+```
+
+## Exemplo
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+}
+```
+
+Essa fonte controla:
+
+```text
+apps/website/.env
+apps/website/.env.development
+```
+
+Se `default` também entra na mescla de outros ambientes em tempo de execução é uma pergunta separada, ainda em aberto. O mapeamento de nomes de arquivo acima não decide isso.

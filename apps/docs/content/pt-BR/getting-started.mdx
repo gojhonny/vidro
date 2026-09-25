@@ -1,0 +1,38 @@
+---
+title: Primeiros passos
+description: Como um projeto Vidro é formado, e o que o scaffold atual faz e não faz.
+---
+
+# Primeiros passos
+
+Os comandos públicos pretendidos são `npx vidro`, `npm exec vidro`, `pnpm dlx vidro`, `bunx vidro` e `yarn dlx vidro`. Nenhum deles instala um pacote publicado hoje. O nome do pacote npm ainda não foi decidido, e `@vidro/cli` é privado.
+
+## Comandos que existem como scaffold
+
+A CLI reconhece estes nomes:
+
+```text
+vidro init
+vidro generate
+vidro validate
+vidro check
+vidro show
+```
+
+Cada um está ligado em `@vidro/cli` e hoje escreve que o comando não está implementado, depois sai com status 1. Não os trate como passos de setup que funcionam.
+
+## Arquivo fonte
+
+Um projeto é declarado em um arquivo:
+
+```text
+.vidro/<project>.vidro
+```
+
+`project` nomeia esse arquivo. Alvos nomeiam diretórios. Ambientes nomeiam os arquivos que esses diretórios recebem. A regra de nome de arquivo está em [Ambientes](/language/environments). Essa regra é semântica projetada. O scaffold ainda não gera os arquivos.
+
+## Scaffold
+
+Quando `vidro init` for implementado, deve seguir detectar, depois inferir, depois perguntar. Arquivos do repositório são mais baratos do que perguntas. O scaffolder só deve perguntar quando um fato continuar ambíguo depois da inspeção, como um nome de projeto que não pode ser inferido.
+
+Ele não deve pedir a lista de alvos, valores de `PATH`, quais arquivos de ambiente importar, nem como tratar valores vazios e segredos. Isso é política de detecção e do compilador.

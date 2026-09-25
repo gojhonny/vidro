@@ -1,0 +1,35 @@
+---
+title: LangDrift
+description: LangDrift 的规范 Vidro 源，以及它在设计上控制的环境文件。
+---
+
+# LangDrift
+
+LangDrift 是第一个预期的集成目标。下面的源是规范示例。这是设计语义。运行当前 CLI 不会创建这些文件。
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+  REQUIRED_KEY;
+  EMPTY_KEY: "";
+}
+```
+
+## 设计上的输出
+
+| 声明 | 文件 | 值 |
+| --- | --- | --- |
+| `website.default` | `apps/website/.env` | `RESEND_API_KEY` 是外部引用。 |
+| `website.development` | `apps/website/.env.development` | `API_URL` 是字面量，`REQUIRED_KEY` 是必填，`EMPTY_KEY` 是显式空字符串。 |
+
+`development` 不是关键字。其他标识符按同一规则映射：`website.production` 会控制 `apps/website/.env.production`。

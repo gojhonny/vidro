@@ -1,0 +1,60 @@
+---
+title: 環境
+description: 環境名は識別子です。default は .env に、それ以外の名前は .env.名前 に対応します。
+---
+
+# 環境
+
+環境は `target.environment` と宣言します。環境名は識別子です。`development`、`production`、`staging`、`preview`、`qa`、`test` は予約語ではありません。`default` が特別なのは、対応するファイルだけです。
+
+## 出力ファイル
+
+この対応は Vidro の設計上の意味です。現在の CLI はこれらのファイルを生成しません。
+
+```text
+default        → .env
+<environment>  → .env.<environment>
+```
+
+```text
+target.default       → <target PATH>/.env
+target.environment   → <target PATH>/.env.<environment>
+```
+
+例:
+
+```text
+website.default      → apps/website/.env
+website.development  → apps/website/.env.development
+website.production   → apps/website/.env.production
+website.preview      → apps/website/.env.preview
+website.qa           → apps/website/.env.qa
+api.integration      → <api PATH>/.env.integration
+```
+
+## 例
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+}
+```
+
+このソースが制御するのは次です。
+
+```text
+apps/website/.env
+apps/website/.env.development
+```
+
+実行時に `default` が他の環境へマージされるかは、別の未決事項です。上のファイル名対応はそれを決めません。

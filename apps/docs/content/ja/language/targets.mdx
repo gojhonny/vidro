@@ -1,0 +1,20 @@
+---
+title: ターゲット
+description: ターゲットは、環境ファイルを受け取る名前付きディレクトリです。
+---
+
+# ターゲット
+
+ターゲットは名前とパスです。`PATH` は環境ごとに変わらないので、ターゲットに属します。
+
+```css
+website {
+  PATH: "apps/website/";
+}
+
+api {
+  PATH: "apps/api/";
+}
+```
+
+パスは、そのターゲットの環境ファイルを置く場所です。`website.default` は `website` のパスへ、`api.integration` は `api` のパスへ書きます。ファイル名の規則は[環境](/language/environments)にあります。

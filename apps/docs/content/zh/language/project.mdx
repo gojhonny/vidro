@@ -1,0 +1,16 @@
+---
+title: 项目
+description: project 声明为 Vidro 源文件命名。
+---
+
+# 项目
+
+每个 Vidro 文件都以项目名开始：
+
+```css
+project: "langdrift";
+```
+
+名字是字符串。它标识这份配置，规范源路径是 `.vidro/<project>.vidro`。编译器生成的状态如果存在，属于 `.vidro/.generated/`，不属于源文件。
+
+LangDrift 是第一个预期的集成目标。这个集成在本仓库里还没有实现。

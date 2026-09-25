@@ -1,0 +1,60 @@
+---
+title: 环境
+description: 环境名是标识符。default 映射到 .env，其他名字映射到 .env 加上该名字。
+---
+
+# 环境
+
+环境声明为 `target.environment`。环境名是标识符。`development`、`production`、`staging`、`preview`、`qa` 和 `test` 不是保留关键字。`default` 特殊只是因为它映射到的文件不同。
+
+## 输出文件
+
+这是 Vidro 的设计语义。当前 CLI 不会生成这些文件。
+
+```text
+default        → .env
+<environment>  → .env.<environment>
+```
+
+```text
+target.default       → <target PATH>/.env
+target.environment   → <target PATH>/.env.<environment>
+```
+
+例子：
+
+```text
+website.default      → apps/website/.env
+website.development  → apps/website/.env.development
+website.production   → apps/website/.env.production
+website.preview      → apps/website/.env.preview
+website.qa           → apps/website/.env.qa
+api.integration      → <api PATH>/.env.integration
+```
+
+## 示例
+
+```css
+project: "langdrift";
+
+website {
+  PATH: "apps/website/";
+}
+
+website.default {
+  RESEND_API_KEY: $RESEND_API_KEY;
+}
+
+website.development {
+  API_URL: "http://localhost:8080";
+}
+```
+
+这份源控制：
+
+```text
+apps/website/.env
+apps/website/.env.development
+```
+
+`default` 在运行时是否并入其他环境，是另一个尚未决定的问题。上面的文件名映射不决定这件事。

@@ -1,0 +1,20 @@
+---
+title: Alvos
+description: Um alvo é um diretório nomeado que recebe arquivos de ambiente.
+---
+
+# Alvos
+
+Um alvo é um nome mais um caminho. `PATH` pertence ao alvo porque não muda por ambiente.
+
+```css
+website {
+  PATH: "apps/website/";
+}
+
+api {
+  PATH: "apps/api/";
+}
+```
+
+O caminho é onde os arquivos de ambiente daquele alvo são colocados. `website.default` escreve no caminho de `website`. `api.integration` escreve no caminho de `api`. A regra de nome de arquivo está em [Ambientes](/language/environments).
